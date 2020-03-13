@@ -11,6 +11,7 @@ public class BazIT {
     public void testAnotherBazMethod() {
         Baz testee = new Baz();
         assertThat(testee.anotherBazMethod(), is("jacoco6"));
+        assertThat(true, is(false));
     }
 
 }

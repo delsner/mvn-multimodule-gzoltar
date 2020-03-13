@@ -11,6 +11,7 @@ public class BazTest {
     public void testBazMethod() {
         Baz testee = new Baz();
         assertThat(testee.bazMethod(), is(6));
+        assertThat(true, is(false));
     }
 
 }
