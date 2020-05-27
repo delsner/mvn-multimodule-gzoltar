@@ -6,7 +6,7 @@ public class Foo {
     private String s = "jacoco";
 
     public int fooMethod() {
-        return i;
+        return i + 1;
     }
 
     public String conditionedFooMethod(boolean condition) {
