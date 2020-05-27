@@ -2,7 +2,7 @@ package de.doubleslash.demo.coverage.module.one;
 
 public class Foo {
 
-    private int i = 7;
+    private int i = 5;
     private String s = "jacoco";
 
     public int fooMethod() {
