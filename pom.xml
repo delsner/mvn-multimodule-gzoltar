@@ -38,6 +38,7 @@
                     <!--<version>2.15</version>-->
                     <version>3.0.0-M3</version>
                 </plugin>
+                 <!--
                 <plugin>
                     <groupId>org.jacoco</groupId> 
                     <artifactId>jacoco-maven-plugin</artifactId> 
@@ -48,7 +49,6 @@
                                 <goal>prepare-agent</goal> 
                             </goals>
                         </execution>
-                        <!-- attached to Maven test phase --> 
                         <execution>
                             <id>report</id>
                             <phase>test</phase>
@@ -58,6 +58,7 @@
                         </execution>
                     </executions>
                 </plugin>
+                --> 
             </plugins>
         </build>
 </project>
