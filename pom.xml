@@ -42,14 +42,14 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <!--<version>2.15</version>-->
                 <version>3.0.0-M3</version>
-                <configuration>
+                <!--<configuration>
                     <properties>
                         <property>
                             <name>listener</name>
                             <value>edu.tum.delsner.CustomTestListener</value>
                         </property>
                     </properties>
-                </configuration>
+                </configuration>-->
             </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
