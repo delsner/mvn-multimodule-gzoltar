@@ -46,7 +46,7 @@
                 <execution>
                     <!-- Run our version calculation script -->
                     <id>Waiting before start</id>
-                    <phase>test</phase>
+                    <phase>compile</phase>
                     <goals>
                         <goal>exec</goal>
                     </goals>
