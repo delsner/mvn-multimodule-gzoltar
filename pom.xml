@@ -37,26 +37,6 @@
 
 <build>
     <plugins>
-        <!-- a hacky way to wait for the PID to be available -->
-        <plugin>
-            <artifactId>exec-maven-plugin</artifactId>
-            <version>3.0.0</version>
-            <groupId>org.codehaus.mojo</groupId>
-            <executions>
-                <execution>
-                    <!-- Run our version calculation script -->
-                    <id>Waiting before start</id>
-                    <phase>compile</phase>
-                    <goals>
-                        <goal>exec</goal>
-                    </goals>
-                    <configuration>
-                        <executable>bash</executable>
-                        <commandlineArgs>-c 'sleep 5'</commandlineArgs>
-                    </configuration>
-                </execution>
-            </executions>
-        </plugin>
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>
