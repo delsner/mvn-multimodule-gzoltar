@@ -10,6 +10,7 @@
     <module>application_module_1</module>
     <module>application_module_2</module>
     <module>application_module_3</module>
+    <module>application_module_4</module>
 </modules>
 <packaging>pom</packaging>
 
