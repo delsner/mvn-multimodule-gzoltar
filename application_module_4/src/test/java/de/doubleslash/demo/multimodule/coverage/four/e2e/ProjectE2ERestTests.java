@@ -9,24 +9,25 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import static org.junit.Assert.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
-@AutoConfigureMockMvc
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ProjectE2ERestTests {
 
     private final String URL = "/project/";
 
     @Autowired
-    private MockMvc systemUnderTest;
+    private TestRestTemplate systemUnderTest;
 
     @Autowired
     private ProjectRepository projectRepository;
@@ -47,15 +48,10 @@ public class ProjectE2ERestTests {
         Project createdProject = projectRepository.save(project);
 
         // when
-        ResultActions result = systemUnderTest.perform(post(URL)
-                .content(objectMapper.writeValueAsString(project))
-                .contentType(MediaType.APPLICATION_JSON));
+        Project actualProject = systemUnderTest.postForObject(URL, project, Project.class);
 
         // then
-        result
-                .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(createdProject.getId()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(createdProject.getName()));
+        assertEquals(actualProject.getId(), createdProject.getId());
     }
 
 }
