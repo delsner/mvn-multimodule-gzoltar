@@ -1,6 +1,7 @@
 #pragma D option quiet
 #pragma D option destructive
 
+
 BEGIN
 {
     /* -1: trace this process; 0: do not trace process; */
@@ -19,6 +20,16 @@ syscall:::entry
 /trackedpid[pid] == -1/
 {
     @num[probefunc] = count();
+}
+
+tcp:::send
+/trackedpid[pid] == -1 && connections[pid,args[1]->ip_daddr,args[1]->dport] == 0/
+{
+    connections[pid, args[1]->ip_daddr, args[1]->dport] = -1;
+    printf(
+            "Packet sent:  %s:%u -> %s:%u on behalf of %s (PID: %d, UID: %d)\n",
+            args[1]->ip_saddr, args[1]->sport, args[1]->ip_daddr,
+            args[1]->dport, execname, pid, uid);
 }
 
 syscall::exit:entry
