@@ -100,5 +100,15 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>tracing</id>
+            <dependencies>
+                <dependency>
+                    <groupId>edu.tum.sse</groupId>
+                    <artifactId>tracing-per-test-listener</artifactId>
+                    <version>1.0-SNAPSHOT</version>
+                </dependency>
+            </dependencies>
+        </profile>
     </profiles>
 </project>
