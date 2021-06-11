@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.doubleslash.demo.multimodule.coverage</groupId>
@@ -21,7 +19,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <argLine/>
+        <argLine />
     </properties>
 
     <dependencies>
@@ -36,44 +34,29 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.0.0-M5</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M5</version>
                 <configuration>
                     <argLine>-Xmx2G ${argLine}</argLine>
                 </configuration>
             </plugin>
-            <!--<plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.4</version>
-                <executions>
-                <execution>
-                <goals>
-                <goal>prepare-agent</goal>
-                </goals>
-                </execution>
-                <execution>
-                <id>report</id>
-                <phase>test</phase>
-                <goals>
-                <goal>report</goal>
-                </goals>
-                </execution>
-                </executions>
-            </plugin>-->
+
         </plugins>
     </build>
     <profiles>
-        <profile>
-            <id>ttrace</id>
-            <dependencies>
-                <dependency>
-                    <groupId>edu.tum.ttrace</groupId>
-                    <artifactId>ttrace-listener</artifactId>
-                    <version>0.0.1</version>
-                </dependency>
-            </dependencies>
-        </profile>
         <profile>
             <id>testwiseCoverage</id>
             <dependencies>
@@ -109,6 +92,18 @@
                     <version>1.0-SNAPSHOT</version>
                 </dependency>
             </dependencies>
+        </profile>
+        <profile>
+            <id>clover</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.openclover</groupId>
+                        <artifactId>clover-maven-plugin</artifactId>
+                        <version>4.4.1</version>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
     </profiles>
 </project>
